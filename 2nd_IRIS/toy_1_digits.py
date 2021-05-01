@@ -1,4 +1,3 @@
-
 #########################################################################
 # digits 부터 해보기
 #########################################################################
@@ -56,7 +55,7 @@ y_pred_DT = decision_tree.predict(X_test)
 
 # 정확도, 혼동행렬, 분류보고서 확인
 accuracy_DT = accuracy_score(y_test, y_pred_DT)
-accuracy_DT # 0.21
+accuracy_DT # 0.85
 
 conf_mat_DT = confusion_matrix(y_test, y_pred_DT)
 conf_mat_DT
@@ -128,7 +127,7 @@ y_pred_SGD = sgd_model.predict(X_test)
 
 # 정확도, 혼동행렬, 분류보고서 확인
 accuracy_SGD = accuracy_score(y_test, y_pred_SGD)
-accuracy_SGD    # 0.938
+accuracy_SGD    # 0.94
 
 conf_mat_SGD = confusion_matrix(y_test, y_pred_SGD)
 conf_mat_SGD
@@ -162,3 +161,10 @@ print(classification_report(y_test, y_pred_LR))
 
 # (6) 모델 평가해보기
 #####
+
+아래의 5종 모델 활용.
+1. 의사결정나무 (DecisionTree)                       # 85
+2. 랜덤 포레스트 (Random Forest)                     # 97
+3. 서포트 벡터 머신 (Support Vector Machine)         # 98 [ㅇ]
+4. 확률적 경사하강법 (Stochastic Gradient Descent)    # 94
+5. 로지스틱 회귀 (Logistic Regression)               # 95
