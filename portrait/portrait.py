@@ -99,3 +99,28 @@ plt.show()
 img_mask_up = cv2.resize(img_mask, img_orig.shape[:2][::-1], interpolation = cv2.INTER_LINEAR)
 _, img_mask_up = cv2.threshold(img_mask_up, 128, 255, cv2.THRESH_BINARY)
 
+ax = plt.subplot(1,2,1)
+plt.imshow(img_mask_up, cmap=plt.cm.binary_r)
+ax.set_title('Original Size Mask')
+
+ax = plt.subplot(1,2,2)
+plt.imshow(img_mask, cmap = plt.cm.binary_r)
+ax.set_title('DeepLab Model Mask')
+
+plt.show()
+
+
+img_mask_color = cv2.cvtColor(img_mask_up, cv2.COLOR_GRAY2BGR)
+img_bg_mask = cv2.bitwise_not(img_mask_color)
+img_bg = cv2.bitwise_and(img_orig, img_bg_mask)
+plt.imshow(img_bg)
+plt.show()
+
+img_bg_blur = cv2.blur(img_bg, (13,13))
+plt.imshow(cv2.cvtColor(img_bg_blur, cv2.COLOR_BGR2RGB))
+plt.show()
+
+img_concat = np.where(img_mask_color ==255, img_orig, img_bg_blur)
+plt.imshow(cv2.cvtColor(img_concat, cv2.COLOR_BGR2RGB))
+plt.show()
+
